@@ -12,6 +12,13 @@ using System.Runtime.InteropServices;
 /// </summary>
 public class VisibilityStateChecker : MonoBehaviour
 {
+    [SerializeField] Canvas _canvas;
+
+    public void OnClickBackground()
+    {
+        this._canvas.enabled = false;
+    }
+
 #if UNITY_WEBGL_BUILD_ONLY
 
     /// <summary>
@@ -41,6 +48,10 @@ public class VisibilityStateChecker : MonoBehaviour
     public void Send(string response)
     {
         Debug.Log("VisibilityState : " + response);
+        if(response == "true")
+        {
+            this._canvas.enabled = true;
+        }
     }
 
 #else
@@ -55,4 +66,5 @@ public class VisibilityStateChecker : MonoBehaviour
     }
 
 #endif
+
 }
